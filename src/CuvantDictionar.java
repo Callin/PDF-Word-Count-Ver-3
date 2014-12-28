@@ -2,7 +2,7 @@
  * Created to hold the words from the dictionary and and their frequency
  */
 public class CuvantDictionar {
-    private String cuvant; // hold a word from the dictionary
+    private String cuvant; // holds a word from the dictionary
     private int frecventa; // holds the frequency of the word from the dictionary
 
     CuvantDictionar(){
