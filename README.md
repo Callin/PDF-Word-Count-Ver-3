@@ -12,3 +12,7 @@ Frameworks used in the app:
   
 JDK version
   - the version needed to run the app is 1.8 or higher
+
+Other dependencies
+ - fontbox-1.8.7
+ - commons-logging-1.2
