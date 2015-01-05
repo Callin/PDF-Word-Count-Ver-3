@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 /**
  * It uses Apache PDFBox to operate on the PDF file
+ *      - getTextFromPDF: extracts the text from a PDF document and returns it as an ArrayList<String>
  */
 public class Pdf {
     private ArrayList<String> textFromPDF = new ArrayList<String>();

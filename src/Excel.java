@@ -11,6 +11,7 @@ import java.util.ArrayList;
  */
 public class Excel {
     public String createFile(String excelFileName, ArrayList<String> wordsFromTheDictionary){
+            // creates the results.xls file
         int i;
         ArrayList<String> excelHeader = new ArrayList<String>();
                     // it adds the known header elements
