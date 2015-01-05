@@ -57,7 +57,6 @@ public class Excel {
                 return "The file Results.xls has been created!\n";
             }
             else
-                System.out.println("The file already exists!\n");
                 return "The file already exists!\n";
 
         } catch (IOException e) {
