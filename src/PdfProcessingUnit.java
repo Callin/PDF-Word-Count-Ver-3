@@ -8,8 +8,8 @@ import java.util.ArrayList;
  *      - output the results into the xls file
  * */
 public class PdfProcessingUnit {
-        public void  processTheFile(File pdfDocPath, ArrayList<CuvantDictionar> wordsFromDictionary,
-                                    String xlsPath, String docDirectory){
+        public void  processTheFile(File pdfDocPath, ArrayList<DictionaryWord> wordsFromDictionary,
+                                    String xlsPath, String companyName){
             /**
              *  Will take the path to the PDF file as parameter
              * */
@@ -26,6 +26,6 @@ public class PdfProcessingUnit {
 
             // write the results into the xls file
             Excel xlsFile = new Excel();
-            xlsFile.addRecord(xlsPath, docDirectory, results);
+            xlsFile.addRecord(xlsPath, companyName, results);
         }
 }
