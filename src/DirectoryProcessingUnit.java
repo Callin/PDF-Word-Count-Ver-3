@@ -10,7 +10,7 @@ public class DirectoryProcessingUnit {
      * */
 
     private File mainDirectory;
-    private ArrayList<CuvantDictionar> wordsFromDictionary;
+    private ArrayList<DictionaryWord> wordsFromDictionary;
     private ArrayList<String> wordsFromDictionary2;
     private Excel xlsFile;
 
@@ -18,7 +18,7 @@ public class DirectoryProcessingUnit {
         /**
          * Will initialize the instance variables
          * */
-        // get the words from the dictionary as ArrayList<CuvantDictionar>
+        // get the words from the dictionary as ArrayList<DictionaryWord>
         wordsFromDictionary = Dictionary.getTheWords(mainDirectoryPath + "/dictionary.txt");
 
         // get the words from the dictionary as ArrayList<String>
@@ -42,7 +42,7 @@ public class DirectoryProcessingUnit {
     public File getMainDirectory(){
         return mainDirectory;
     }
-    public ArrayList<CuvantDictionar> getWordsFromDictionary(){
+    public ArrayList<DictionaryWord> getWordsFromDictionary(){
         return wordsFromDictionary;
     }
     public ArrayList<String> getWordsFromDictionary2(){
@@ -52,7 +52,7 @@ public class DirectoryProcessingUnit {
         return xlsFile;
     }
 
-    void searchAndProcessTheDirectory(File directoryPath, ArrayList<CuvantDictionar> wordsFromDictionary,
+    void searchAndProcessTheDirectory(File directoryPath, ArrayList<DictionaryWord> wordsFromDictionary,
                                              String xlsFile, String companyName) {
         /**
          *  Will search the directory for PDF files and call
