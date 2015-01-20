@@ -10,8 +10,11 @@ import java.util.ArrayList;
  * It uses Apache POI to operate on the Excel file
  */
 public class Excel {
+    private File excelFileName;
+
     public String createFile(String excelFileName, ArrayList<String> wordsFromTheDictionary){
             // creates the results.xls file
+        this.excelFileName = new File(excelFileName);
         int i;
         ArrayList<String> excelHeader = new ArrayList<String>();
                     // it adds the known header elements
@@ -20,8 +23,8 @@ public class Excel {
                 excelHeader.add(1, "No. of words in the document");
                 excelHeader.add(2, "No. of sentences");
                 excelHeader.add(3, "No. of words per sentence");
-                for(String cuvandDictionar:wordsFromTheDictionary){
-                    excelHeader.add(cuvandDictionar);
+                for(String dictionaryWord:wordsFromTheDictionary){
+                    excelHeader.add(dictionaryWord);
                 }
         System.out.print("Creating the excel file ...");
         File file = new File(excelFileName);
@@ -67,7 +70,7 @@ public class Excel {
         }
     }
 
-    public String addRecord(String excelFilePath, String dirName, ArrayList<Integer> allTheCounts){
+    public String addRecord(String excelFilePath, String companyName, ArrayList<Integer> allTheCounts){
         /***
          * the method will add a new record in the excel file
          */
@@ -83,7 +86,7 @@ public class Excel {
             HSSFCell cell;
                 // insert the company's name
             cell = row.createCell(0);
-            cell.setCellValue(dirName);
+            cell.setCellValue(companyName);
 
             int i = 1; // 0 is for the company name
             for(Integer excelRecord:allTheCounts){
@@ -107,5 +110,8 @@ public class Excel {
             e.printStackTrace();
             return "There was a failed or interrupted I/O operation while working with the Excel file";
         }
+    }
+    public String toString(){
+        return excelFileName.getAbsolutePath();
     }
 }
