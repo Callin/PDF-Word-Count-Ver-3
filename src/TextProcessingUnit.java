@@ -24,13 +24,13 @@ public class TextProcessingUnit {
         return results;
     }
 
-    ArrayList<Integer> processTheText(ArrayList<String> textToBeSplit, ArrayList<CuvantDictionar> cuvinte){
+    ArrayList<Integer> processTheText(ArrayList<String> textToBeSplit, ArrayList<DictionaryWord> words){
         /**
          * It will process the text and return the results
          *
          * It will take:
          *      - the text (from the entire PDF)
-         *      - the words from the dictionary (String or CuvantDictionar)
+         *      - the words from the dictionary (String or DictionaryWord)
          *
          * It should return and ArrayList with
          *          - the number of words in the document
@@ -64,9 +64,9 @@ public class TextProcessingUnit {
                         // alternatively an ArrayList could be used of non-words (e.g. ; ' " , . :)
                     if((label.toString().length()>1))
                         numberOfWords++;
-                    for(CuvantDictionar cuvant:cuvinte){
-                        if(cuvant.getCuvant().equals(label.toString())){
-                            cuvant.incrementFrequency();
+                    for(DictionaryWord word:words){
+                        if(word.getWord().equals(label.toString())){
+                            word.incrementFrequency();
                         }
                     }
                 }
@@ -87,8 +87,8 @@ public class TextProcessingUnit {
             results.add(numberOfWords/numberOfSentences);
                 // adds the frequency of each word from the dictionary to the results ArrayList
                 // it will be added in the order in which the word was read from the dictionary
-            for(CuvantDictionar cuvant:cuvinte){
-                results.add(cuvant.getFrecventa());
+            for(DictionaryWord word:words){
+                results.add(word.getFrequency());
             }
         }
         return getResults();
