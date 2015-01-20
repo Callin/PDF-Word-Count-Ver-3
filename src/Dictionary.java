@@ -5,25 +5,25 @@ import java.util.ArrayList;
  * Created to extract the words from the dictionary
  */
 public class Dictionary {
-    public static ArrayList<CuvantDictionar> getTheWords(String dictionaryPath){
+    public static ArrayList<DictionaryWord> getTheWords(String dictionaryPath){
         /**
          *      The method will read the Dictionary and will
-         *      return the words from the file as an ArrayList of CuvantDictionar
+         *      return the words from the file as an ArrayList of DictionaryWord
          */
-        ArrayList<CuvantDictionar> theWords = new ArrayList<CuvantDictionar>();
+        ArrayList<DictionaryWord> theWords = new ArrayList<DictionaryWord>();
         try{
             FileReader fileReader = new FileReader(dictionaryPath);
             BufferedReader reader = new BufferedReader(fileReader);
             String line;
             while ((line = reader.readLine()) != null){
-                    // a new CuvantDictionar object is created which will hold the word from the dictionary and
+                    // a new DictionaryWord object is created which will hold the word from the dictionary and
                     // its frequency which initially is zero
-                CuvantDictionar cuvant = new CuvantDictionar();
+                DictionaryWord dictionaryWord = new DictionaryWord();
                     // the word from the dictionary is added to the object
-                cuvant.setCuvant(line);
+                dictionaryWord.setWord(line);
                     // the object which holds the word and its frequency is then added to
-                    // an ArrayList of CuvantDictionar objects
-                theWords.add(cuvant);
+                    // an ArrayList of DictionaryWord objects
+                theWords.add(dictionaryWord);
             }
             reader.close();
         } catch (FileNotFoundException e) {
