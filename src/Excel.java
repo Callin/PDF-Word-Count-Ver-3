@@ -6,12 +6,17 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import java.io.*;
 import java.util.ArrayList;
 
-/**
- * It uses Apache POI to operate on the Excel file
+/** It uses Apache POI to create the Excel file and add a new record
  */
 public class Excel {
+    /** the path to the results.xls file*/
     private File excelFileName;
 
+    /** Creates the results file (if it does not exist)
+     *  @param excelFileName            the path to the results.xls file
+     *  @param wordsFromTheDictionary   the words from the dictionary
+     *  @return                         a message which indicates whether the operation was a success or not
+     * */
     public String createFile(String excelFileName, ArrayList<String> wordsFromTheDictionary){
             // creates the results.xls file
         this.excelFileName = new File(excelFileName);
@@ -70,10 +75,13 @@ public class Excel {
         }
     }
 
+    /** Adds a new record to the excel file
+     *  @param excelFilePath    the path to the results file
+     *  @param companyName      the company name
+     *  @param allTheCounts     all the frequencies (words, sentences a.s.o.) that will be added to the results file
+     *  @return                 a message which indicates whether the operation was a success or not
+     */
     public String addRecord(String excelFilePath, String companyName, ArrayList<Integer> allTheCounts){
-        /***
-         * the method will add a new record in the excel file
-         */
         try {
             File file = new File(excelFilePath);
             FileInputStream inFile = new FileInputStream(excelFilePath);
@@ -111,6 +119,8 @@ public class Excel {
             return "There was a failed or interrupted I/O operation while working with the Excel file";
         }
     }
+
+    @Override
     public String toString(){
         return excelFileName.getAbsolutePath();
     }

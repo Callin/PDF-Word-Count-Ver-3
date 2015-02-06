@@ -2,14 +2,17 @@ import java.io.*;
 import java.util.ArrayList;
 
 /**
- * Created to extract the words from the dictionary
+ * Provides two methods to extract the words from the dictionary file
  */
 public class Dictionary {
+    /**
+     * Reads the Dictionary and returns the words from the file as an ArrayList of DictionaryWord objects
+     *
+     * @param dictionaryPath    The location of the dictionary file (the path)
+     * @return                  The words from the dictionary. Each word will be enclosed in DictionaryWord object along with a variable for it's frequency.
+     */
     public static ArrayList<DictionaryWord> getTheWords(String dictionaryPath){
-        /**
-         *      The method will read the Dictionary and will
-         *      return the words from the file as an ArrayList of DictionaryWord
-         */
+
         ArrayList<DictionaryWord> theWords = new ArrayList<DictionaryWord>();
         try{
             FileReader fileReader = new FileReader(dictionaryPath);
@@ -36,11 +39,13 @@ public class Dictionary {
         }
         return theWords;
     }
+
+    /**
+     * Reads the Dictionary and returns the words from the file as an ArrayList of Strings
+     * @param dictionaryPath    The location of the dictionary file (the path)
+     * @return                  The words from the dictionary as String objects
+     */
     public static ArrayList<String> getTheWordsAsStrings(String dictionaryPath){
-        /**
-         *      The method will read the Dictionary and will
-         *      return the words from the file as an ArrayList of Strings
-         */
         ArrayList<String> theWords = new ArrayList<String>();
         try{
             FileReader fileReader = new FileReader(dictionaryPath);

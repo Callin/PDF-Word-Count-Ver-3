@@ -4,20 +4,31 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
-/**
- * It uses Apache PDFBox to operate on the PDF file
- *      - getTextFromPDF: extracts the text from a PDF document and returns it as an ArrayList<String>
+ /**
+ * Uses Apache PDFBox library to operate on the PDF file
  */
 public class Pdf {
+     /** stores the text from a PDF */
     private ArrayList<String> textFromPDF = new ArrayList<String>();
 
+     /** Setter - no function yet, could be used later
+      *  @param s the reference to the object holding the text from the PDF
+      * */
     public void setTextFromPDF(ArrayList<String> s){
         // to be used at a later date
     }
+
+     /** Getter - returns the reference to the object that holds the text from the PDF. Could return a null.
+      *  @return    a reference to the object that holds the text from the PDF
+      * */
     public ArrayList<String> getTextFromPDF(){
         return textFromPDF;
     }
 
+     /** Getter - extracts the text from a PDF document and returns it as an ArrayList of String objects
+      *  @param document    path to the PDF document
+      *  @return            a reference to the object that holds the text from the PDF
+      **/
     public ArrayList<String> getTextFromPDF(File document){
         // extracts the text from a PDF document and returns it as an ArrayList<String>
         try {

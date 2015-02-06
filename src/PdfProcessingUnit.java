@@ -2,17 +2,18 @@ import java.io.File;
 import java.util.ArrayList;
 
 /**
- * The class provides the functionality to process a single PDF document:
- *      - extract de text
- *      - count the number of words and sentences
- *      - output the results into the xls file
+ * Provides the functionality to process a single PDF document.
  * */
 public class PdfProcessingUnit {
+
+        /** It extracts de text, counts the number of words and sentences, and outputs the result into the xls file
+         * @param pdfDocPath            the location of the PDF document
+         * @param wordsFromDictionary   the words from the dictionary
+         * @param xlsPath               the location of the results.xls file
+         * @param companyName           the company name
+         */
         public void  processTheFile(File pdfDocPath, ArrayList<DictionaryWord> wordsFromDictionary,
                                     String xlsPath, String companyName){
-            /**
-             *  Will take the path to the PDF file as parameter
-             * */
 
              // get the text from the PDF document
             ArrayList<String> textFromThePdf;

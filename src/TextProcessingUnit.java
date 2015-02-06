@@ -9,35 +9,35 @@ import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Provides the means to process the text extracted from the PDF documents. It uses Stanford CoreNLP to process the text.
+ */
 public class TextProcessingUnit {
-    /**
-     * The class provides the means to process the text extracted from the PDF documents
-     * It uses Stanford CoreNLP to process the text
-     */
 
+    /** holds the results of the text processing */
     private ArrayList<Integer> results = new ArrayList<Integer>();
 
-    void setResults(ArrayList<Integer> results){
+    /** Setter - sets the results of processing the text
+     * @param results the results of processing the text
+     */
+    public void setResults(ArrayList<Integer> results){
         this.results = results;
     }
-    ArrayList<Integer> getResults(){
+
+    /** Getter - returns the reference to the results object
+     * @return the text processing results
+     */
+    public ArrayList<Integer> getResults(){
         return results;
     }
 
-    ArrayList<Integer> processTheText(ArrayList<String> textToBeSplit, ArrayList<DictionaryWord> words){
-        /**
-         * It will process the text and return the results
-         *
-         * It will take:
-         *      - the text (from the entire PDF)
-         *      - the words from the dictionary (String or DictionaryWord)
-         *
-         * It should return and ArrayList with
-         *          - the number of words in the document
-         *          - the number of sentences in the document
-         *          - the number of words/sentence
-         *          - the frequency of each word from the dictionary
-         */
+    /** Processes the text.
+     * @param textToBeSplit the text from a PDF document
+     * @param words         the words from the dictionary enclosed in DictionaryWord objects
+     * @return              the text processing results (frequency of the words, number of sentences a.s.o.)
+     */
+    public ArrayList<Integer> processTheText(ArrayList<String> textToBeSplit, ArrayList<DictionaryWord> words){
+
         int numberOfSentences = 0;
         int numberOfWords = 0;
 
