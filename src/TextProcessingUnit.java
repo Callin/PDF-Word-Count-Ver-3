@@ -41,39 +41,37 @@ public class TextProcessingUnit {
         int numberOfSentences = 0;
         int numberOfWords = 0;
 
-        if(textToBeSplit == null)
+        if(textToBeSplit == null){
             // if there was a problem while reading the PDF, the textToBeSplit will be null
             // and therefore there is no point in going forward
             System.out.println("There was a problem with the PDF document");
+        }
         else {
             for(String onePage:textToBeSplit){
+                try (Reader reader = new StringReader(onePage);
+                     Reader reader2 = new StringReader(onePage)){
+
                     // breaks the text into sentences
-                Reader reader = new StringReader(onePage);
-                DocumentPreprocessor dp = new DocumentPreprocessor(reader);
-                for (List sentence : dp) {
+                    DocumentPreprocessor dp = new DocumentPreprocessor(reader);
+                    for (List sentence : dp) { // to be reviewed
                         // counts the number of sentences
-                    numberOfSentences++;
-                }
+                        numberOfSentences++;
+                    }
 
                     // breaks the text into words
-                Reader reader2 = new StringReader(onePage);
-                PTBTokenizer ptbt = new PTBTokenizer(reader2, new CoreLabelTokenFactory(), "");
-                for (CoreLabel label; ptbt.hasNext(); ) {
-                    label = (CoreLabel) ptbt.next();
+                    PTBTokenizer ptbt = new PTBTokenizer(reader2, new CoreLabelTokenFactory(), "");
+                    for (CoreLabel label; ptbt.hasNext(); ) {
+                        label = (CoreLabel) ptbt.next();
                         // if the word is more than one character long, count them, else do not
                         // alternatively an ArrayList could be used of non-words (e.g. ; ' " , . :)
-                    if((label.toString().length()>1))
-                        numberOfWords++;
-                    for(DictionaryWord word:words){
-                        if(word.getWord().equals(label.toString())){
-                            word.incrementFrequency();
+                        if((label.toString().length()>1))
+                            numberOfWords++;
+                        for(DictionaryWord word:words){
+                            if(word.getWord().equals(label.toString())){
+                                word.incrementFrequency();
+                            }
                         }
                     }
-                }
-
-                try {
-                    reader.close();
-                    reader2.close();
                 } catch (IOException e) {
                     System.out.println("Reader will not close.");
                     e.printStackTrace();
