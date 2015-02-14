@@ -9,7 +9,7 @@ import java.util.ArrayList;
  */
 public class Pdf {
      /** stores the text from a PDF */
-    private ArrayList<String> textFromPDF = new ArrayList<String>();
+    private ArrayList<String> textFromPDF = new ArrayList<>();
 
      /** Setter - no function yet, could be used later
       *  @param s the reference to the object holding the text from the PDF
@@ -31,10 +31,11 @@ public class Pdf {
       **/
     public ArrayList<String> getTextFromPDF(File document){
         // extracts the text from a PDF document and returns it as an ArrayList<String>
-        try {
-                // loads the document from an input stream
-            PDDocument pdf = PDDocument.load(document);
+        // loads the document from an input stream
 
+        //PDDocument pdf = null;
+        try (PDDocument pdf = PDDocument.load(document)) {
+           // pdf = PDDocument.load(document);
             PDFTextStripper stripper = new PDFTextStripper();
             int pageToBeExtracted = 1;
 
@@ -47,7 +48,7 @@ public class Pdf {
                 textFromPDF.add(stripper.getText(pdf));
                 pageToBeExtracted++;
             }
-            pdf.close();
+
         } catch (IOException e) {
             System.out.println("There was a failed or interrupted I/O operation " +
                     "while reading the PDF file. The document " + document +
