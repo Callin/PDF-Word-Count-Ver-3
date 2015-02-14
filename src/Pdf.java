@@ -33,9 +33,7 @@ public class Pdf {
         // extracts the text from a PDF document and returns it as an ArrayList<String>
         // loads the document from an input stream
 
-        //PDDocument pdf = null;
         try (PDDocument pdf = PDDocument.load(document)) {
-           // pdf = PDDocument.load(document);
             PDFTextStripper stripper = new PDFTextStripper();
             int pageToBeExtracted = 1;
 
