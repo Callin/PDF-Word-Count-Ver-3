@@ -14,9 +14,10 @@ public class Dictionary {
     public static ArrayList<DictionaryWord> getTheWords(String dictionaryPath){
 
         ArrayList<DictionaryWord> theWords = new ArrayList<DictionaryWord>();
-        try{
-            FileReader fileReader = new FileReader(dictionaryPath);
-            BufferedReader reader = new BufferedReader(fileReader);
+
+        try (FileReader fileReader = new FileReader(dictionaryPath);
+             BufferedReader reader = new BufferedReader(fileReader)){
+
             String line;
             while ((line = reader.readLine()) != null){
                     // a new DictionaryWord object is created which will hold the word from the dictionary and
@@ -28,7 +29,6 @@ public class Dictionary {
                     // an ArrayList of DictionaryWord objects
                 theWords.add(dictionaryWord);
             }
-            reader.close();
         } catch (FileNotFoundException e) {
             System.out.println("The dictionary does not exist or is inaccessible");
             e.printStackTrace();
@@ -47,15 +47,15 @@ public class Dictionary {
      */
     public static ArrayList<String> getTheWordsAsStrings(String dictionaryPath){
         ArrayList<String> theWords = new ArrayList<String>();
-        try{
-            FileReader fileReader = new FileReader(dictionaryPath);
-            BufferedReader reader = new BufferedReader(fileReader);
+
+        try(FileReader fileReader = new FileReader(dictionaryPath);
+            BufferedReader reader = new BufferedReader(fileReader)){
+
             String line;
             while ((line = reader.readLine()) != null){
                     // the word is added to the ArrayList of dictionary words
                 theWords.add(line);
             }
-            reader.close();
         } catch (FileNotFoundException e) {
                 // the error message should be displayed in the JTextArea
             System.out.println("The dictionary does not exist or is inaccessible");
