@@ -33,46 +33,46 @@ public class Excel {
                 }
         System.out.print("Creating the excel file ...");
         File file = new File(excelFileName);
-        try {
-            if(file.createNewFile()){
+        if(file.exists()){
+            return "The file already exists!\n";
+        } else{
+            try (FileOutputStream outFile =  new FileOutputStream(file)) {
+                    file.createNewFile();
                     // the Results.xls file does not exist and is being created
-                FileOutputStream outFile = new FileOutputStream(file);
+                     //outFile = new FileOutputStream(file);
                     // a new workbook is being created
-                HSSFWorkbook workbook = new HSSFWorkbook();
+                    HSSFWorkbook workbook = new HSSFWorkbook();
                     // a new sheet is being created
-                workbook.createSheet("Sheet 1");
+                    workbook.createSheet("Sheet 1");
                     // the sheet is assigned to a local variable
-                HSSFSheet sheet = workbook.getSheet("Sheet 1");
+                    HSSFSheet sheet = workbook.getSheet("Sheet 1");
 
                     // writes the header of the excel file
-                HSSFRow row = sheet.createRow(0);
+                    HSSFRow row = sheet.createRow(0);
                     // creates a local variable for a given excel cell
-                HSSFCell cell;
-                for(i=0; i<excelHeader.size(); i++){
-                    // the header elements are added (both the known and the dictionary elements)
-                    if(i<=3){
-                        cell = row.createCell(i);
-                        cell.setCellValue(excelHeader.get(i));
-                    }else{
-                        cell = row.createCell(i);
-                        cell.setCellValue("No. of times the word \"" + excelHeader.get(i) + "\" appears in the document");
+                    HSSFCell cell;
+                    for(i=0; i<excelHeader.size(); i++){
+                        // the header elements are added (both the known and the dictionary elements)
+                        if(i<=3){
+                            cell = row.createCell(i);
+                            cell.setCellValue(excelHeader.get(i));
+                        } else{
+                            cell = row.createCell(i);
+                            cell.setCellValue("No. of times the word \"" + excelHeader.get(i) + "\" appears in the document");
+                        }
                     }
-                }
-                workbook.write(outFile);
-                outFile.close();
+                    workbook.write(outFile);
 
-                System.out.print("The file Results.xls has been created!\n");
-                return "The file Results.xls has been created!\n";
+                    System.out.print("The file Results.xls has been created!\n");
+                    return "The file Results.xls has been created!\n";
+            } catch (IOException e) {
+                System.out.println("There was a failed or interrupted I/O operation " +
+                        "while working with the Excel file");
+                e.printStackTrace();
+                return "There was a failed or interrupted I/O operation while working with the Excel file";
             }
-            else
-                return "The file already exists!\n";
-
-        } catch (IOException e) {
-            System.out.println("There was a failed or interrupted I/O operation " +
-                    "while working with the Excel file");
-            e.printStackTrace();
-            return "There was a failed or interrupted I/O operation while working with the Excel file";
         }
+
     }
 
     /** Adds a new record to the excel file
@@ -82,6 +82,7 @@ public class Excel {
      *  @return                 a message which indicates whether the operation was a success or not
      */
     public String addRecord(String excelFilePath, String companyName, ArrayList<Integer> allTheCounts){
+        FileOutputStream outFile = null;
         try {
             File file = new File(excelFilePath);
             FileInputStream inFile = new FileInputStream(excelFilePath);
@@ -104,9 +105,9 @@ public class Excel {
             }
 
             // write the changes to the file
-            FileOutputStream outFile = new FileOutputStream(file);
+            outFile = new FileOutputStream(file);
             workbook.write(outFile);
-            outFile.close();
+
             return "A new record was added to the results file";
         } catch (FileNotFoundException e) {
             System.out.println("The excel file does not exist or is inaccessible");
@@ -117,6 +118,14 @@ public class Excel {
                     "while working with the Excel file");
             e.printStackTrace();
             return "There was a failed or interrupted I/O operation while working with the Excel file";
+        } finally {
+            if (outFile != null) {
+                try {
+                    outFile.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         }
     }
 
